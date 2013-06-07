@@ -30,4 +30,4 @@ the CeCILL-B license (similar to the BSD licence). You
 can read the full text of the license at
 http://cecill.info/licences/Licence_CeCILL-B_V1-en.html
 
--- Damien Martin-Guillerez <dmg at online dash go dot com>
+-- Damien Martin-Guillerez (dmg at online dash go dot com)
