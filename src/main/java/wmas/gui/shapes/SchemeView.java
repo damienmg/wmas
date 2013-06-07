@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -341,6 +342,23 @@ public class SchemeView extends Component implements MouseListener,
 		}
 	}
 
+	/**
+	 * A utility method that tells if the second button was pressed. It returns
+	 * true if either a mouse button that is not the first one is pressed or a
+	 * modifier key is used (one out of alt, meta and control)
+	 * 
+	 * @param e
+	 *            The mouse event to test
+	 * @return true if we consider that second button was pressed
+	 */
+	public static boolean isSecondButton(MouseEvent e) {
+		if (e.getButton() == MouseEvent.BUTTON3
+				|| e.getButton() == MouseEvent.BUTTON2)
+			return true;
+		return (e.getButton() == MouseEvent.BUTTON1 && 0 != (e.getModifiers() & (InputEvent.ALT_MASK
+				| InputEvent.CTRL_MASK | InputEvent.META_MASK)));
+	}
+
 	/* Mouse events */
 	public void mouseClicked(MouseEvent e) {
 		requestFocus();
@@ -356,7 +374,7 @@ public class SchemeView extends Component implements MouseListener,
 				}
 			}
 		} else {
-			if (e.getButton() == MouseEvent.BUTTON3) {
+			if (isSecondButton(e)) {
 				if (drawLine >= 0) {
 					drawLine = -1;
 					repaint();
